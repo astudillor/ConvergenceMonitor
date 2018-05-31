@@ -4,10 +4,16 @@
 from __future__ import division, print_function, absolute_import
 
 from numpy.linalg import norm
-from numpy import array
+from numpy import array, inner
 import numpy as np
 
-__all__ = ['Convergence']
+__all__ = ['Convergence', 'IDENTITY', 'EUCLIDEAN_NORM']
+
+
+def IDENTITY(x): return x
+
+
+def EUCLIDEAN_NORM(x): return norm(x)
 
 
 class Convergence:
@@ -17,8 +23,8 @@ class Convergence:
 
     """
 
-    def __init__(self, only_counter_iters=False, action=lambda x: x,
-                 Norm=norm, verbose=False, increment=1):
+    def __init__(self, only_counter_iters=False, action=IDENTITY,
+                 Norm=EUCLIDEAN_NORM, verbose=False, increment=1):
         self.iter_ = 0
         self.resVec = np.array([])
         self.action = action
@@ -65,7 +71,7 @@ class Convergence:
         return array(self.resVec)
 
     def printInfo(self):
-        print(self)
+        print(str(self))
 
     def scaleResVec(self, alpha):
         self.resVec = alpha*self.resVec
