@@ -1,5 +1,5 @@
 from __future__ import division, print_function, absolute_import
-from Convergence import Convergence
+from ConvergenceMonitor import ConvergenceMonitor
 
 import scipy.sparse.linalg as la
 import scipy.io as io
@@ -25,21 +25,21 @@ def main():
     A, b = setup_linear_system()
 
     # using bicg
-    conv = Convergence(action=lambda x: b - A.dot(x), increment=2)
+    conv = ConvergenceMonitor(action=lambda x: b - A.dot(x), increment=2)
     x, info = la.bicg(A, b, maxiter=1000000, callback=conv)
     conv.scale(1.0 / np.linalg.norm(b))
     print('bicg ', end='')
     conv.printInfo()
 
     # using bicgstab
-    conv = Convergence(action=lambda x: b - A.dot(x), increment=2)
+    conv = ConvergenceMonitor(action=lambda x: b - A.dot(x), increment=2)
     x, info = la.bicgstab(A, b, maxiter=1000000, callback=conv)
     conv.scale(1.0 / np.linalg.norm(b))
     print('bicgstab ', end='')
     conv.printInfo()
 
     # using gmres
-    conv = Convergence()
+    conv = ConvergenceMonitor()
     x, info = la.gmres(A, b, maxiter=1000000, restart=250, callback=conv)
     conv.scale(1.0 / np.linalg.norm(b))
     print('full GMRES ', end='')

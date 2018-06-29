@@ -5,7 +5,8 @@ from __future__ import division, print_function, absolute_import
 
 import numpy as np
 
-__all__ = ['Convergence', 'IDENTITY', 'EUCLIDEAN_NORM', 'WEIGHTED_NORM']
+__all__ = ['ConvergenceMonitor', 'IDENTITY',
+           'EUCLIDEAN_NORM', 'WEIGHTED_NORM']
 
 
 def IDENTITY(x): return x
@@ -14,10 +15,10 @@ def IDENTITY(x): return x
 def EUCLIDEAN_NORM(x): return np.linalg.norm(x)
 
 
-def WEIGHTED_NORM(G): return lambda x: np.dot(G.matvec(x), x)
+def WEIGHTED_NORM(G): return lambda x: np.sqrt(np.dot(G.matvec(x), x))
 
 
-class Convergence:
+class ConvergenceMonitor:
     """
     Convergence object motorizes the residual convergence though the callback
     function

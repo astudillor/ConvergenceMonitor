@@ -3,7 +3,7 @@
 
 import setuptools
 
-short_description = "Convergence object"
+short_description = "Convergence monitor object"
 minimun_requirements = ['numpy']
 
 
@@ -29,8 +29,8 @@ def get_requirements():
 
 
 setuptools.setup(
-    name="Convergence",
-    version="1.0.0",
+    name="ConvergenceMonitor",
+    version="1.0.1",
     author="Reinaldo Astudillo",
     author_email="R.A.Astudillo@tudelft.nl",
     description=short_description,
