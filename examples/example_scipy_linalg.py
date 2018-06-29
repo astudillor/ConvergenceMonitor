@@ -5,7 +5,7 @@ import scipy.sparse.linalg as la
 import scipy.io as io
 import numpy as np
 
-
+# Copy from scypy demo_lgmres
 def setup_linear_system():
     problem = "SPARSKIT/drivcav/e05r0200"
     server = 'ftp://math.nist.gov/pub/MatrixMarket2/'
