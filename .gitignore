@@ -2,3 +2,6 @@
 *.swp
 *.bak
 venv
+venv-dev
+*.egg-info
+examples/math.nist.gov/
